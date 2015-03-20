@@ -2,8 +2,8 @@
 
 from flask.ext.script import Manager
 
-from nhlstats.app import app
-from nhlstats.db import create_tables, drop_tables
+from api.app import app
+from api.db import create_tables, drop_tables
 
 manager = Manager(app)
 
