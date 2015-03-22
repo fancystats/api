@@ -11,7 +11,7 @@ class ReadOnlyResource(RestResource):
     """Inherit from this resource if it is read only."""
 
     def __init__(self, rest_api, model, authentication):
-        allowed_methods=   ['GET']
+        allowed_methods = ['GET']
         super(ReadOnlyResource, self).__init__(self, rest_api, model,
                                                authentication,
                                                allowed_methods=allowed_methods)
@@ -26,19 +26,19 @@ class LeagueResource(ReadOnlyResource):
 
 
 class SeasonResource(ReadOnlyResource):
-    pass
+    include_resource = {'league': LeagueResource}
 
 
 class ConferenceResource(ReadOnlyResource):
-    pass
+    include_resources = {'league': LeagueResource}
 
 
 class DivisionResource(ReadOnlyResource):
-    pass
+    include_resources = {'conference': ConferenceResource}
 
 
 class TeamResource(ReadOnlyResource):
-    pass
+    include_resources = {'division': DivisionResource}
 
 
 class ScheduleResource(ReadOnlyResource):
@@ -46,7 +46,7 @@ class ScheduleResource(ReadOnlyResource):
 
 
 class PlayerResource(ReadOnlyResource):
-    pass
+    include_resources = {'team': TeamResource}
 
 
 class PlayerSkaterStatResource(ReadOnlyResource):
