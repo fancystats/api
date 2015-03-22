@@ -17,4 +17,6 @@ def create_app():
     db = Database(app)
     db_proxy.initialize(db.database)
 
+    import api.resources
+
     return app
