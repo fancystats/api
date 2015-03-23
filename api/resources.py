@@ -36,7 +36,7 @@ class ScheduleResource(RestResource):
 
 
 class PlayerResource(RestResource):
-    include_resources = {'team': TeamResource}
+    pass
 
 
 class PlayerSkaterStatResource(RestResource):
@@ -44,6 +44,10 @@ class PlayerSkaterStatResource(RestResource):
 
 
 class PlayerGoalieStatResource(RestResource):
+    pass
+
+
+class RosterResource(RestResource):
     pass
 
 
@@ -55,11 +59,15 @@ class GameResource(RestResource):
     pass
 
 
+class LineupResource(RestResource):
+    pass
+
+
 class EventResource(RestResource):
     pass
 
 
-class PlayerEventResource(RestResource):
+class EventPlayerResource(RestResource):
     pass
 
 
@@ -75,7 +83,9 @@ api.register(models.PlayerSkaterStat, PlayerSkaterStatResource,
              allowed_methods=['GET'])
 api.register(models.PlayerGoalieStat, PlayerGoalieStatResource,
              allowed_methods=['GET'])
+api.register(models.Roster, RosterResource, allowed_methods=['GET'])
 api.register(models.Coach, CoachResource, allowed_methods=['GET'])
 api.register(models.Game, GameResource, allowed_methods=['GET'])
+api.register(models.Lineup, LineupResource, allowed_methods=['GET'])
 api.register(models.Event, EventResource, allowed_methods=['GET'])
-api.register(models.PlayerEvent, PlayerEventResource, allowed_methods=['GET'])
+api.register(models.EventPlayer, EventPlayerResource, allowed_methods=['GET'])
