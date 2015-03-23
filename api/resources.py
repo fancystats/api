@@ -1,3 +1,14 @@
+"""
+
+API Resources
+==============
+
+This module describes the API resources available for FancySTats.
+
+The API is accessible using the URI `/api/<resource name>`. Where
+`<resource_name>1 is the name of the resource.
+
+"""
 from flask_peewee.rest import RestAPI, RestResource
 
 from nhlstats import models
@@ -8,67 +19,152 @@ api = RestAPI(app)
 
 
 class ArenaResource(RestResource):
-    pass
+    """
+    1/api/arenas/` --- Arenas
+    """
+
+    def get_api_name(self):
+        return 'arenas'
 
 
 class LeagueResource(RestResource):
-    pass
+    """
+    `/api/leagues/` --- Leagues
+    """
+
+    def get_api_name(self):
+        return 'leagues'
 
 
 class SeasonResource(RestResource):
+    """
+    `/api/seasons/` --- Seasons
+    """
+
     include_resource = {'league': LeagueResource}
+
+    def get_api_name(self):
+        return 'seasons'
 
 
 class ConferenceResource(RestResource):
+    """
+    `/api/conferences/` --- Conferences
+    """
     include_resources = {'league': LeagueResource}
+
+    def get_api_name(self):
+        return 'conferences'
 
 
 class DivisionResource(RestResource):
+    """
+    `/api/divisions/` ----- Divisions
+    """
     include_resources = {'conference': ConferenceResource}
+
+    def get_api_name(self):
+        return 'divisions'
 
 
 class TeamResource(RestResource):
+    """
+    `/api/teams/` --- Teams
+    """
     include_resources = {'division': DivisionResource}
+
+    def get_api_name(self):
+        return 'teams'
 
 
 class ScheduleResource(RestResource):
-    pass
+    """
+    `/api/schedules/` --- Schedules
+    """
+
+    def get_api_name(self):
+        return 'schedules'
 
 
 class PlayerResource(RestResource):
-    pass
+    """
+    `/api/players/` --- Players
+    """
+
+    def get_api_name(self):
+        return 'players'
 
 
 class PlayerSkaterStatResource(RestResource):
-    pass
+    """
+    `/api/player/skaters/` --- Player Skater Stats
+    """
+
+    def get_api_name(self):
+        return 'player/skaters'
 
 
 class PlayerGoalieStatResource(RestResource):
-    pass
+    """
+    `/api/player/goaliesstat` --- Player Goalie Stats
+    """
+
+    def get_api_name(self):
+        return 'player/goalies'
 
 
 class RosterResource(RestResource):
-    pass
+    """
+    `/api/rosters/` --- Rosters
+    """
+
+    def get_api_name(self):
+        return 'rosters'
 
 
 class CoachResource(RestResource):
-    pass
+    """
+    `/api/coaches/` --- Coaches
+    """
+
+    def get_api_name(self):
+        return 'coaches'
 
 
 class GameResource(RestResource):
-    pass
+    """
+    `/api/games/` --- Games
+    """
+
+    def get_api_name(self):
+        return 'games'
 
 
 class LineupResource(RestResource):
-    pass
+    """
+    `/api/lineups/` --- Lineups
+    """
+
+    def get_api_name(self):
+        return 'lineups'
 
 
 class EventResource(RestResource):
-    pass
+    """
+    `/api/events/` --- Events
+    """
+
+    def get_api_name(self):
+        return 'events'
 
 
 class EventPlayerResource(RestResource):
-    pass
+    """
+    `/api/event/players/` --- Event Players
+    """
+
+    def get_api_name(self):
+        return 'event/players'
 
 
 api.register(models.Arena, ArenaResource, allowed_methods=['GET'])
