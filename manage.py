@@ -23,16 +23,16 @@ def dropdb():
     drop_tables()
 
 
-def freezedb():
-    """Freeze database data into fixtures"""
+def dumpdb():
+    """Dump database data into fixtures"""
     fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
-    fixtures.freeze(basedir=fixtures_dir)
+    fixtures.dump(basedir=fixtures_dir)
 
 
-def thawdb():
-    """Thaw data from fixtures and load into database"""
+def loaddb():
+    """Load data from fixtures into database"""
     fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
-    fixtures.thaw(basedir=fixtures_dir)
+    fixtures.load(basedir=fixtures_dir)
 
 
 if __name__ == "__main__":
