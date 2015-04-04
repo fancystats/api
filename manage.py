@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import os
+
 from flask.ext.script import Manager
 
 from nhlstats import fixtures
@@ -23,12 +25,14 @@ def dropdb():
     drop_tables()
 
 
+@manager.command
 def dumpdb():
     """Dump database data into fixtures"""
     fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
     fixtures.dump(basedir=fixtures_dir)
 
 
+@manager.command
 def loaddb():
     """Load data from fixtures into database"""
     fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
