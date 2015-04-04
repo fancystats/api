@@ -31,17 +31,19 @@ def dropdb():
 
 
 @manager.command
-def dumpdb():
+def dumpdb(dir=None):
     """Dump database data into fixtures"""
-    fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
-    fixtures.dump(basedir=fixtures_dir)
+    if not dir:
+        dir = os.path.join(os.path.dirname(__file__), 'fixtures')
+    fixtures.dump(basedir=dir)
 
 
 @manager.command
 def loaddb():
     """Load data from fixtures into database"""
-    fixtures_dir = os.path.join(os.path.dirname(__file__), 'fixtures')
-    fixtures.load(basedir=fixtures_dir)
+    if not dir:
+        dir = os.path.join(os.path.dirname(__file__), 'fixtures')
+    fixtures.load(basedir=dir)
 
 
 if __name__ == "__main__":
