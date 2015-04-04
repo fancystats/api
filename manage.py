@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import logging
 import os
 
 from flask.ext.script import Manager
@@ -8,6 +9,10 @@ from nhlstats import fixtures
 from nhlstats.db import create_tables, drop_tables
 
 from api.app import create_app
+
+logger = logging.getLogger('nhlstats')
+logger.addHandler(logging.StreamHandler())
+logger.setLevel(logging.DEBUG)
 
 app = create_app()
 manager = Manager(app)
