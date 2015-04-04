@@ -1,5 +1,5 @@
 git+https://github.com/fancystats/nhlstats.git@dev
 Flask
-Flask-Peewee
+Flask-Peewee==2.4.6
 Flask-Script
 peewee
