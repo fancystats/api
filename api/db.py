@@ -1,3 +1,14 @@
+"""
+
+Database
+=========
+
+Borrowed from flask-peewee, this is a heavily modified version of the Database
+class that adds support for peewee.Proxy and disables database session closing
+during testing as that wipes the in-memory SQLite database.
+
+"""
+
 import sys
 import os
 
@@ -21,7 +32,6 @@ class ImproperlyConfigured(Exception):
 
 
 class Database(object):
-
     def __init__(self, app=None):
         if app:
             self.init_app(app)
@@ -45,25 +55,21 @@ class Database(object):
             self.database_engine = self.database_config.pop('engine')
         except KeyError:
             raise ImproperlyConfigured(
-                'Please specify a "name" and "engine" for your database'
-            )
+                'Please specify a "name" and "engine" for your database')
 
         try:
             self.database_class = load_class(self.database_engine)
             assert issubclass(self.database_class, peewee.Database)
         except ImportError:
-            raise ImproperlyConfigured(
-                'Unable to import: "%s"' % self.database_engine
-            )
+            raise ImproperlyConfigured('Unable to import: "%s"' %
+                                       self.database_engine)
         except AttributeError:
-            raise ImproperlyConfigured(
-                'Database engine not found: "%s"' % self.database_engine
-            )
+            raise ImproperlyConfigured('Database engine not found: "%s"' %
+                                       self.database_engine)
         except AssertionError:
             raise ImproperlyConfigured(
                 'Engine not subclass of peewee.Database: "%s"' %
-                self.database_engine
-            )
+                self.database_engine)
 
         return self.database_class(self.database_name, **self.database_config)
 

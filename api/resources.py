@@ -9,7 +9,7 @@ The API is accessible using the URI `/api/<resource name>`. Where
 `<resource_name>1 is the name of the resource.
 
 """
-from flask_peewee.rest import RestAPI, RestResource
+from api.rest import RestAPI, RestResource
 
 from nhlstats import models
 

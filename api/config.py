@@ -1,5 +1,6 @@
 # Just a placeholder for now...
 
+
 class Config(object):
     DATABASE = {
         'name': 'nhlstats.db',
